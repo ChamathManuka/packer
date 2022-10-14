@@ -1,0 +1,4 @@
+run_tests:
+    image: maven:3-openjdk-18
+    script:
+        - mvn test -f pom.xml
