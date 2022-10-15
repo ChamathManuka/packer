@@ -1,21 +1,22 @@
 stages:
+   - test
    - package
    - build
 
 
-# run_tests:
-#     stage: test
-#     image: maven:3-openjdk-18
-#     services:
-#         - postgres:12.2-alpine
+run_tests:
+    stage: test
+    image: maven:3-openjdk-18
+    services:
+        - postgres:12.2-alpine
 
-#     variables:
-#         POSTGRES_DB: packer
-#         POSTGRES_USER: packer
-#         POSTGRES_PASSWORD: test@123
-#         POSTGRES_HOST_AUTH_METHOD: trust
-#     script:
-#         - mvn test -f pom.xml
+    variables:
+        POSTGRES_DB: packer
+        POSTGRES_USER: packer
+        POSTGRES_PASSWORD: test@123
+        POSTGRES_HOST_AUTH_METHOD: trust
+    script:
+        - mvn test -f pom.xml
 
 run_package:
     stage: package
