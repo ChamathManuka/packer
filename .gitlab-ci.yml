@@ -11,7 +11,7 @@ run_build:
         IMAGE_NAME: chamathm/packer
         IMAGE_TAG: packer-api-1.0
     before_script:
-        - winpty docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+        - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
     script:
         - docker build -t $IMAGE_NAME:$IMAGE_TAG .
         - docker push $IMAGE_NAME:$IMAGE_TAG
