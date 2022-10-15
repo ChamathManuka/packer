@@ -1,38 +1,5 @@
 stages:
-   - test
-   - package
-   - build
-
-
-run_tests:
-    stage: test
-    image: maven:3-openjdk-18
-    services:
-        - postgres:12.2-alpine
-
-    variables:
-        POSTGRES_DB: packer
-        POSTGRES_USER: packer
-        POSTGRES_PASSWORD: test@123
-        POSTGRES_HOST_AUTH_METHOD: trust
-    script:
-        - mvn test -f pom.xml
-
-run_package:
-    stage: package
-    image: maven:3-openjdk-18
-    services:
-        - postgres:12.2-alpine
-    variables:
-        POSTGRES_DB: packer
-        POSTGRES_USER: packer
-        POSTGRES_PASSWORD: test@123
-        POSTGRES_HOST_AUTH_METHOD: trust
-    artifacts:
-        paths:
-            - target/
-    script: 
-        - mvn package
+    - build
         
 run_build:
     stage: build
@@ -44,7 +11,7 @@ run_build:
         IMAGE_NAME: chamathm/packer
         IMAGE_TAG: packer-api-1.0
     before_script:
-        - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+        - winpty docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
     script:
         - docker build -t $IMAGE_NAME:$IMAGE_TAG .
         - docker push $IMAGE_NAME:$IMAGE_TAG
