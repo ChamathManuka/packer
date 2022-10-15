@@ -32,6 +32,8 @@ run_package:
         paths:
             - target/
     script: 
+        - mvn validate
+        - mvn compile
         - mvn clean package
     
 run_build:
