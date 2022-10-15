@@ -15,7 +15,7 @@ run_package:
     image: maven:3-openjdk-18
     artifacts:
         paths:
-            -target/
+            - target/
     script: 
         - ./mvnw package
         
