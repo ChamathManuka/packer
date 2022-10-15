@@ -17,7 +17,7 @@ run_package:
         paths:
             - target/
     script: 
-        - ./mvnw package
+        - mvn package
         
 
 
