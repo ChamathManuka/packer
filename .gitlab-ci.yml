@@ -44,6 +44,9 @@ run_build:
         IMAGE_TAG: packer-api-1.0
     before_script:
         - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+    artifacts:
+        paths:
+            - target/
     script:
         - docker build -t $IMAGE_NAME:$IMAGE_TAG .
         - docker push $IMAGE_NAME:$IMAGE_TAG
