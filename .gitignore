@@ -1,0 +1,30 @@
+*.log
+*.log.*
+
+# /target
+/target
+/out
+
+# mvn
+.mvn
+mvnw.cmd
+mvnw
+
+# IDEA
+.idea
+.shelf
+*.iml
+*.ipr
+*.iws
+
+#git
+.git
+
+
+# Eclipse
+*.classpath
+*.project
+*.settings
+/bin
+
+
