@@ -13,6 +13,13 @@ run_tests:
 
 run_package:
     image: maven:3-openjdk-18
+    services:
+        - postgres:12.2-alpine
+    variables:
+        POSTGRES_DB: packer
+        POSTGRES_USER: packer
+        POSTGRES_PASSWORD: test@123
+        POSTGRES_HOST_AUTH_METHOD: trust
     artifacts:
         paths:
             - target/
