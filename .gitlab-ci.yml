@@ -10,3 +10,9 @@ run_tests:
         POSTGRES_HOST_AUTH_METHOD: trust
     script:
         - mvn test -f pom.xml
+
+run_package:
+    image: maven:3-openjdk-18
+    script: ./mvnw package
+
+
