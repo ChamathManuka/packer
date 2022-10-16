@@ -1,9 +1,7 @@
 stages:
    - test
-   - dev_package
-   - dev_build
-   - master_package
-   - master_build
+   - package
+   - build
 
 
 run_tests:
@@ -21,7 +19,7 @@ run_tests:
         - mvn test -f pom.xml
 
 dev_package:
-    stage: dev_package
+    stage: package
     image: maven:3-openjdk-18
     only:
         dev
@@ -41,7 +39,7 @@ dev_package:
         - mvn clean package
     
 dev_build:
-    stage: dev_build
+    stage: build
     image: docker:20.10.19-cli
     only:
         dev
@@ -50,7 +48,7 @@ dev_build:
     variables: 
         DOCKER_TLS_CERTDIR: "/certs"
         IMAGE_NAME: chamathm/packer
-        IMAGE_TAG: packer-api-master-1.0
+        IMAGE_TAG: packer-api-dev-1.0
     before_script:
         - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
     artifacts:
@@ -61,7 +59,7 @@ dev_build:
         - docker push $IMAGE_NAME:$IMAGE_TAG
 
 main_package:
-    stage: master_package
+    stage: package
     image: maven:3-openjdk-18
     only:
         main
@@ -82,7 +80,7 @@ main_package:
 
 
 main_build:
-    stage: master_build
+    stage: build
     image: docker:20.10.19-cli
     only:
         main
@@ -91,7 +89,7 @@ main_build:
     variables: 
         DOCKER_TLS_CERTDIR: "/certs"
         IMAGE_NAME: chamathm/packer
-        IMAGE_TAG: packer-api-dev-1.0
+        IMAGE_TAG: packer-api-master-1.0
     before_script:
         - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
     artifacts:
