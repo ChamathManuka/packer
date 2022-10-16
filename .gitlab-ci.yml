@@ -1,9 +1,9 @@
 stages:
    - test
-   - dev-package
-   - dev-build
-   - master-package
-   - master-build
+   - dev_package
+   - dev_build
+   - master_package
+   - master_build
 
 
 run_tests:
@@ -21,7 +21,7 @@ run_tests:
         - mvn test -f pom.xml
 
 dev_package:
-    stage: dev-package
+    stage: dev_package
     image: maven:3-openjdk-18
     only:
         dev
@@ -41,7 +41,7 @@ dev_package:
         - mvn clean package
     
 dev_build:
-    stage: dev-build
+    stage: dev_build
     image: docker:20.10.19-cli
     only:
         dev
@@ -61,7 +61,7 @@ dev_build:
         - docker push $IMAGE_NAME:$IMAGE_TAG
 
 main_package:
-    stage: master-package
+    stage: master_package
     image: maven:3-openjdk-18
     only:
         main
@@ -82,7 +82,7 @@ main_package:
 
 
 main_build:
-    stage: master-build
+    stage: master_build
     image: docker:20.10.19-cli
     only:
         main
