@@ -22,7 +22,7 @@ dev_package:
     stage: package
     image: maven:3-openjdk-18
     only:
-        dev
+        - dev
     services:
         - postgres:12.2-alpine
     variables:
@@ -42,7 +42,7 @@ dev_build:
     stage: build
     image: docker:20.10.19-cli
     only:
-        dev
+        - dev
     services:
         - docker:20.10.19-dind
     variables: 
@@ -58,44 +58,44 @@ dev_build:
         - docker build -t $IMAGE_NAME:$IMAGE_TAG .
         - docker push $IMAGE_NAME:$IMAGE_TAG
 
-# main_package:
-#     stage: package
-#     image: maven:3-openjdk-18
-#     only:
-#         main
-#     services:
-#         - postgres:12.2-alpine
-#     variables:
-#         POSTGRES_DB: packer
-#         POSTGRES_USER: packer
-#         POSTGRES_PASSWORD: test@123
-#         POSTGRES_HOST_AUTH_METHOD: trust
-#     artifacts:
-#         paths:
-#             - target/
-#     script: 
-#         - mvn validate
-#         - mvn compile
-#         - mvn clean package
+main_package:
+    stage: package
+    image: maven:3-openjdk-18
+    only:
+        - main
+    services:
+        - postgres:12.2-alpine
+    variables:
+        POSTGRES_DB: packer
+        POSTGRES_USER: packer
+        POSTGRES_PASSWORD: test@123
+        POSTGRES_HOST_AUTH_METHOD: trust
+    artifacts:
+        paths:
+            - target/
+    script: 
+        - mvn validate
+        - mvn compile
+        - mvn clean package
 
 
-# main_build:
-#     stage: build
-#     image: docker:20.10.19-cli
-#     only:
-#         main
-#     services:
-#         - docker:20.10.19-dind
-#     variables: 
-#         DOCKER_TLS_CERTDIR: "/certs"
-#         IMAGE_NAME: chamathm/packer
-#         IMAGE_TAG: packer-api-master-1.0
-#     before_script:
-#         - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
-#     artifacts:
-#         paths:
-#             - target/
-#     script:
-#         - docker build -t $IMAGE_NAME:$IMAGE_TAG .
-#         - docker push $IMAGE_NAME:$IMAGE_TAG
+main_build:
+    stage: build
+    image: docker:20.10.19-cli
+    only:
+        - main
+    services:
+        - docker:20.10.19-dind
+    variables: 
+        DOCKER_TLS_CERTDIR: "/certs"
+        IMAGE_NAME: chamathm/packer
+        IMAGE_TAG: packer-api-master-1.0
+    before_script:
+        - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+    artifacts:
+        paths:
+            - target/
+    script:
+        - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+        - docker push $IMAGE_NAME:$IMAGE_TAG
 
