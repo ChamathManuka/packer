@@ -43,13 +43,12 @@ public class LoginOperation extends AbstractAccessOperation implements Operation
 		{
 			throw new InternalException( "failed to login" );
 		}
-		System.out.println( "login operation in executed successfully" );
 
 		if ( !user.isActive() )
 		{
 			throw new InternalException( "your account is inactive" );
 		}
-		return user.execute( userLoginAction, loginData, requiredComponents, userWrapper );
+		return userLoginAction.execute( user, loginData, requiredComponents, userWrapper );
 	}
 
 }

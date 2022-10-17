@@ -20,6 +20,8 @@ mvnw
 #git
 .git
 
+#source
+/src/main/resources/application.properties
 
 # Eclipse
 *.classpath
