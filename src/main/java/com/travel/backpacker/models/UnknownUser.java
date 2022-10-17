@@ -5,9 +5,15 @@ import org.springframework.http.HttpEntity;
 public class UnknownUser implements User
 {
 	@Override
+	public Long getId()
+	{
+		return null;
+	}
+
+	@Override
 	public UserType getUserType()
 	{
-		return UserType.unknownUser;
+		return UserType.UNKNOWNUSER;
 	}
 
 	@Override
