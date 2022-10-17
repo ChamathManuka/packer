@@ -42,7 +42,7 @@ public class Operator implements User
 	@Override
 	public UserType getUserType()
 	{
-		return UserType.operator;
+		return UserType.OPERATOR;
 	}
 
 	@Override

@@ -19,11 +19,11 @@ public abstract class AbstractOperation
 	{
 		switch ( userType )
 		{
-			case admin:
+			case ADMIN:
 				return requiredComponents.getAdminDao();
-			case passenger:
+			case PASSENGER:
 				return requiredComponents.getPassengerDao();
-			case operator:
+			case OPERATOR:
 				return requiredComponents.getOperatorDao();
 			default:
 				throw new RuntimeException();

@@ -147,7 +147,7 @@ public class Passenger implements User
 	@Override
 	public UserType getUserType()
 	{
-		return UserType.passenger;
+		return UserType.PASSENGER;
 	}
 
 	@Override
