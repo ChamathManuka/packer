@@ -1,4 +1,4 @@
-package com.travel.backpacker.controllers.implController;
+package com.travel.backpacker.controllers.implcontroller;
 
 import com.travel.backpacker.controllers.AccessController;
 import com.travel.backpacker.models.UnknownUser;

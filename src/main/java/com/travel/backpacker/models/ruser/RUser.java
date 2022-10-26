@@ -1,4 +1,4 @@
-package com.travel.backpacker.models.RUser;
+package com.travel.backpacker.models.ruser;
 
 import java.io.Serializable;
 

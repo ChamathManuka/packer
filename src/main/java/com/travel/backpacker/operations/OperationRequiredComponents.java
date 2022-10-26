@@ -1,6 +1,6 @@
 package com.travel.backpacker.operations;
 
-import com.travel.backpacker.Properties.DefaultPackerProperties;
+import com.travel.backpacker.properties.DefaultPackerProperties;
 import com.travel.backpacker.dao.AdminDao;
 import com.travel.backpacker.dao.OperatorDao;
 import com.travel.backpacker.dao.PassengerDao;

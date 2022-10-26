@@ -23,7 +23,7 @@ public interface User extends UserAction<HttpEntity>, Serializable
 
 	public enum Gender
 	{
-		male, female, notprovided;
+		MALE, FEMALE, NOTPROVIDED;
 	}
 
 }

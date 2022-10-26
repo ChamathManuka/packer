@@ -1,6 +1,6 @@
 package com.travel.backpacker.interceptors;
 
-import com.travel.backpacker.Properties.DefaultPackerProperties;
+import com.travel.backpacker.properties.DefaultPackerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -11,6 +11,5 @@ public interface UserDao<T extends User>
 
 	Optional<T> findByUsername( String name );
 
-	//	Optional<T> findByEmail(String email);
 	T save( T t );
 }

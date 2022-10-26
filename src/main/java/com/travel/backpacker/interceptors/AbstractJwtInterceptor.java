@@ -1,7 +1,6 @@
 package com.travel.backpacker.interceptors;
 
-import com.sun.jdi.request.InvalidRequestStateException;
-import com.travel.backpacker.Properties.DefaultPackerProperties;
+import com.travel.backpacker.properties.DefaultPackerProperties;
 import com.travel.backpacker.models.User;
 import com.travel.backpacker.models.UserWrapper;
 import io.jsonwebtoken.JwtBuilder;
@@ -55,7 +54,7 @@ public abstract class AbstractJwtInterceptor implements HandlerInterceptor
 		String authHandler = httpServletRequest.getHeader( "authorization" );
 		if ( authHandler == null || !authHandler.startsWith( prefix ) )
 		{
-			throw new InvalidRequestStateException();
+			throw new RuntimeException();
 		}
 
 	}

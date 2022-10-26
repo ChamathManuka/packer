@@ -1,7 +1,7 @@
 package com.travel.backpacker.operations.factory;
 
-import com.travel.backpacker.controllers.endpointController.access.LoginData;
-import com.travel.backpacker.models.RUser.RPassenger;
+import com.travel.backpacker.controllers.endpointcontroller.access.LoginData;
+import com.travel.backpacker.models.ruser.RPassenger;
 import com.travel.backpacker.models.UnknownUser;
 import com.travel.backpacker.models.UserWrapper;
 import com.travel.backpacker.operations.LoginOperation;

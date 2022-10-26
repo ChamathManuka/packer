@@ -3,8 +3,8 @@ package com.travel.backpacker.operations;
 import com.travel.backpacker.dao.PassengerDao;
 import com.travel.backpacker.entity.Address;
 import com.travel.backpacker.entity.Passenger;
-import com.travel.backpacker.models.RUser.RAddress;
-import com.travel.backpacker.models.RUser.RPassenger;
+import com.travel.backpacker.models.ruser.RAddress;
+import com.travel.backpacker.models.ruser.RPassenger;
 import com.travel.backpacker.models.UnknownUser;
 import com.travel.backpacker.models.UserWrapper;
 import org.springframework.http.HttpStatus;
@@ -63,6 +63,5 @@ public class RegisterOperation extends AbstractAccessOperation implements Operat
 		address.setLine2( rAddress.getLine2() );
 		address.setPostcode( rAddress.getPostcode() );
 		return address;
-		//		address.se( rAddress.getPostcode() );
 	}
 }

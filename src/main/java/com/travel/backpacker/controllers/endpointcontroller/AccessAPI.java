@@ -1,8 +1,8 @@
-package com.travel.backpacker.controllers.endpointController;
+package com.travel.backpacker.controllers.endpointcontroller;
 
 import com.travel.backpacker.controllers.AccessController;
-import com.travel.backpacker.controllers.endpointController.access.LoginData;
-import com.travel.backpacker.models.RUser.RPassenger;
+import com.travel.backpacker.controllers.endpointcontroller.access.LoginData;
+import com.travel.backpacker.models.ruser.RPassenger;
 import com.travel.backpacker.models.UnknownUser;
 import com.travel.backpacker.models.UserWrapper;
 import com.travel.backpacker.operations.Operation;

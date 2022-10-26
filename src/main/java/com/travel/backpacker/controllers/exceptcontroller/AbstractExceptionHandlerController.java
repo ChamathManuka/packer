@@ -10,7 +10,7 @@ public abstract class AbstractExceptionHandlerController<U extends User> impleme
 {
 	private final Controller controller;
 
-	public AbstractExceptionHandlerController( Controller controller )
+	protected AbstractExceptionHandlerController( Controller controller )
 	{
 		this.controller = controller;
 	}

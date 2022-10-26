@@ -1,4 +1,4 @@
-package com.travel.backpacker.Properties;
+package com.travel.backpacker.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

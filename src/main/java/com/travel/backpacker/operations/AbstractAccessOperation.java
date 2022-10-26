@@ -1,6 +1,6 @@
 package com.travel.backpacker.operations;
 
-import com.travel.backpacker.controllers.endpointController.access.LoginData;
+import com.travel.backpacker.controllers.endpointcontroller.access.LoginData;
 import com.travel.backpacker.dao.UserDao;
 import com.travel.backpacker.models.User;
 import com.travel.backpacker.models.UserWrapper;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public abstract class AbstractAccessOperation extends AbstractOperation
 {
-	public AbstractAccessOperation( UserWrapper userWrapper, OperationRequiredComponents requiredComponents )
+	protected AbstractAccessOperation( UserWrapper userWrapper, OperationRequiredComponents requiredComponents )
 	{
 		super( userWrapper, requiredComponents );
 	}
