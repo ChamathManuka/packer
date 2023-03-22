@@ -7,5 +7,4 @@ import org.springframework.stereotype.Component;
 @Component("access.implementation.controller")
 public class AccessImplementationController extends AbstractImplementationController<UnknownUser> implements AccessController
 {
-	//implementation goes here for operation.execute
 }

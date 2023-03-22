@@ -4,10 +4,8 @@ import com.travel.backpacker.controllers.endpointcontroller.access.LoginData;
 import com.travel.backpacker.models.ruser.RPassenger;
 import com.travel.backpacker.models.UnknownUser;
 import com.travel.backpacker.models.UserWrapper;
-import com.travel.backpacker.operations.LoginOperation;
-import com.travel.backpacker.operations.Operation;
-import com.travel.backpacker.operations.OperationRequiredComponents;
-import com.travel.backpacker.operations.RegisterOperation;
+import com.travel.backpacker.models.search.GlobalSearch;
+import com.travel.backpacker.operations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +26,10 @@ public class UnknownUserOperationFactory extends OperationFactory<UnknownUser>
 	public Operation<UnknownUser> getRegisterOperation( RPassenger rPassenger, UserWrapper userWrapper, String platform )
 	{
 		return new RegisterOperation( userWrapper, operationRequiredComponents, rPassenger, platform );
+	}
+
+	public Operation<UnknownUser> getSearchOperation( GlobalSearch globalSearch, UserWrapper userWrapper )
+	{
+		return new SearchOperation( userWrapper, operationRequiredComponents, globalSearch );
 	}
 }

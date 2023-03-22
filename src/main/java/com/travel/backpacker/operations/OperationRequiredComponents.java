@@ -1,5 +1,6 @@
 package com.travel.backpacker.operations;
 
+import com.travel.backpacker.dao.schedulers.content.HotelDao;
 import com.travel.backpacker.properties.DefaultPackerProperties;
 import com.travel.backpacker.dao.AdminDao;
 import com.travel.backpacker.dao.OperatorDao;
@@ -51,5 +52,7 @@ public class OperationRequiredComponents implements BeanFactoryAware
 	{
 		return factory.getBean( UserLoginAction.class );
 	}
+
+	public HotelDao getHotelDao(){return factory.getBean( HotelDao.class );}
 
 }
