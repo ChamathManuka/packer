@@ -6,21 +6,16 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AccomSearch implements GlobalSearch
-{
+public class AccomSearch implements GlobalSearch {
+    @Autowired
+    private final AccomController accomController;
 
-	private final AccomController accomController;
+    public AccomSearch(AccomController accomController) {
+        this.accomController = accomController;
+    }
 
-
-	@Autowired
-	public AccomSearch( AccomController accomController )
-	{
-		this.accomController = accomController;
-	}
-
-	@Override
-	public HttpEntity execute()
-	{
-		return accomController.execute();
-	}
+    @Override
+    public HttpEntity execute() {
+        return accomController.execute();
+    }
 }

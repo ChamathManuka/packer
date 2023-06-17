@@ -6,18 +6,15 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AccomController
-{
-	private final AccomHandler accomHandler;
+public class AccomController implements HolidayController {
+    private final AccomHandler accomHandler;
 
-	@Autowired
-	public AccomController( AccomHandler accomHandler )
-	{
-		this.accomHandler = accomHandler;
-	}
+    @Autowired
+    public AccomController(AccomHandler accomHandler) {
+        this.accomHandler = accomHandler;
+    }
 
-	public HttpEntity execute()
-	{
-		return accomHandler.execute();
-	}
+    public HttpEntity execute() {
+        return accomHandler.execute();
+    }
 }
