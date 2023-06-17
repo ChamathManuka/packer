@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public interface User extends UserAction<HttpEntity>, Serializable
 {
+	Long getId();
 
 	public UserType getUserType();
 
@@ -17,12 +18,12 @@ public interface User extends UserAction<HttpEntity>, Serializable
 
 	public enum UserType
 	{
-		unknownUser, operator, passenger, admin, supplier;
+		UNKNOWNUSER, OPERATOR, PASSENGER, ADMIN, SUPPLIER;
 	}
 
 	public enum Gender
 	{
-		male, female, notprovided;
+		MALE, FEMALE, NOTPROVIDED;
 	}
 
 }

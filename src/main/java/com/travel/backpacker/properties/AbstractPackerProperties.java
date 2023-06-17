@@ -1,4 +1,4 @@
-package com.travel.backpacker.Properties;
+package com.travel.backpacker.properties;
 
 import org.springframework.core.env.Environment;
 
@@ -6,7 +6,7 @@ public abstract class AbstractPackerProperties implements PackerProperties
 {
 	private final Environment environment;
 
-	public AbstractPackerProperties( Environment environment )
+	protected AbstractPackerProperties( Environment environment )
 	{
 		this.environment = environment;
 	}

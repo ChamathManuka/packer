@@ -16,6 +16,7 @@ run_tests:
         POSTGRES_PASSWORD: test@123
         POSTGRES_HOST_AUTH_METHOD: trust
     script:
+        - mvn clean
         - mvn test -f pom.xml
 
 dev_package:

@@ -1,4 +1,4 @@
-package com.travel.backpacker.controllers.endpointController.access;
+package com.travel.backpacker.controllers.endpointcontroller.access;
 
 import com.travel.backpacker.models.User;
 

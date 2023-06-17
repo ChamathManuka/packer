@@ -1,7 +1,6 @@
 package com.travel.backpacker.operations;
 
-import com.sun.jdi.InternalException;
-import com.travel.backpacker.controllers.endpointController.access.LoginData;
+import com.travel.backpacker.controllers.endpointcontroller.access.LoginData;
 import com.travel.backpacker.models.UnknownUser;
 import com.travel.backpacker.models.User;
 import com.travel.backpacker.models.UserLoginAction;
@@ -41,15 +40,14 @@ public class LoginOperation extends AbstractAccessOperation implements Operation
 		}
 		catch ( Exception exception )
 		{
-			throw new InternalException( "failed to login" );
+			throw new RuntimeException( "failed to login" );
 		}
-		System.out.println( "login operation in executed successfully" );
 
 		if ( !user.isActive() )
 		{
-			throw new InternalException( "your account is inactive" );
+			throw new RuntimeException( "your account is inactive" );
 		}
-		return user.execute( userLoginAction, loginData, requiredComponents, userWrapper );
+		return userLoginAction.execute( user, loginData, requiredComponents, userWrapper );
 	}
 
 }

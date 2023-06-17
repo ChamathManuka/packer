@@ -1,8 +1,8 @@
-package com.travel.backpacker.controllers.endpointController;
+package com.travel.backpacker.controllers.endpointcontroller.access;
 
 import com.travel.backpacker.controllers.AccessController;
-import com.travel.backpacker.controllers.endpointController.access.LoginData;
-import com.travel.backpacker.models.RUser.RPassenger;
+import com.travel.backpacker.controllers.endpointcontroller.access.LoginData;
+import com.travel.backpacker.models.ruser.RPassenger;
 import com.travel.backpacker.models.UnknownUser;
 import com.travel.backpacker.models.UserWrapper;
 import com.travel.backpacker.operations.Operation;
@@ -20,13 +20,13 @@ import javax.validation.constraints.Pattern;
 
 @RestController
 //@Controller @ResponseBody
-public class AccessAPI
+public class Access
 {
 	private final AccessController controller;
 	private final UnknownUserOperationFactory factory;
 
 	@Autowired
-	public AccessAPI( @Qualifier("access.exception.controller") AccessController controller, UnknownUserOperationFactory factory )
+	public Access( @Qualifier("access.exception.controller") AccessController controller, UnknownUserOperationFactory factory )
 	{
 		this.controller = controller;
 		this.factory = factory;
@@ -46,7 +46,7 @@ public class AccessAPI
 
 	@PostMapping("/register")
 	public HttpEntity register( @ModelAttribute("wrapper") UserWrapper wrapper, @Valid @RequestBody RPassenger rPassenger,
-			@RequestHeader(name = "Packer-Platform", required = true) String originPlatform )
+			@RequestHeader(name = "Packer-Platform", required = false) String originPlatform )
 	{
 		Operation<UnknownUser> operation = factory.getRegisterOperation( rPassenger, wrapper, originPlatform );
 		return controller.execute( wrapper, operation );

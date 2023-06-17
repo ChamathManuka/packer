@@ -31,23 +31,23 @@ public class UserWrapper
 		this.active = active;
 		if ( this.adminId != 0L )
 		{
-			roles.add( User.UserType.admin );
+			roles.add( User.UserType.ADMIN );
 		}
 		if ( this.operatorId != 0L )
 		{
-			roles.add( User.UserType.operator );
+			roles.add( User.UserType.OPERATOR );
 		}
 		if ( this.supplierId != 0L )
 		{
-			roles.add( User.UserType.supplier );
+			roles.add( User.UserType.SUPPLIER );
 		}
 		if ( this.passengerId != 0L )
 		{
-			roles.add( User.UserType.passenger );
+			roles.add( User.UserType.PASSENGER );
 		}
 		if ( this.unknownUserId != 0L )
 		{
-			roles.add( User.UserType.unknownUser );
+			roles.add( User.UserType.UNKNOWNUSER );
 		}
 	}
 

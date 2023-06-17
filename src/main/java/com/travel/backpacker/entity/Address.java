@@ -1,10 +1,11 @@
 package com.travel.backpacker.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Address")
-public class Address
+public class Address implements Serializable
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

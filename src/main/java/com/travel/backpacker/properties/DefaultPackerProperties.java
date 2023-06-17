@@ -1,4 +1,4 @@
-package com.travel.backpacker.Properties;
+package com.travel.backpacker.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +16,9 @@ public class DefaultPackerProperties extends AbstractPackerProperties
 	private String awsSecretKey;
 	@Value("${aws.s3.access_key_id}")
 	private String awsAccessKey;
+
+	@Value( "$jwt.key" )
+	private String key;
 
 	@Autowired
 	public DefaultPackerProperties( Environment environment )
@@ -51,5 +54,15 @@ public class DefaultPackerProperties extends AbstractPackerProperties
 	public void setAwsAccessKey( String awsAccessKey )
 	{
 		this.awsAccessKey = awsAccessKey;
+	}
+
+	public String getKey()
+	{
+		return key;
+	}
+
+	public void setKey( String key )
+	{
+		this.key = key;
 	}
 }

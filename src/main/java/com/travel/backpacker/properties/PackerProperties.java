@@ -1,4 +1,4 @@
-package com.travel.backpacker.Properties;
+package com.travel.backpacker.properties;
 
 public interface PackerProperties
 {

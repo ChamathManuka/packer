@@ -9,7 +9,7 @@ public abstract class AbstractOperation
 	protected final UserWrapper userWrapper;
 	protected final OperationRequiredComponents requiredComponents;
 
-	public AbstractOperation( UserWrapper userWrapper, OperationRequiredComponents requiredComponents )
+	protected AbstractOperation( UserWrapper userWrapper, OperationRequiredComponents requiredComponents )
 	{
 		this.userWrapper = userWrapper;
 		this.requiredComponents = requiredComponents;
@@ -19,11 +19,11 @@ public abstract class AbstractOperation
 	{
 		switch ( userType )
 		{
-			case admin:
+			case ADMIN:
 				return requiredComponents.getAdminDao();
-			case passenger:
+			case PASSENGER:
 				return requiredComponents.getPassengerDao();
-			case operator:
+			case OPERATOR:
 				return requiredComponents.getOperatorDao();
 			default:
 				throw new RuntimeException();

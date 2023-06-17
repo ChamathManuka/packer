@@ -79,7 +79,7 @@ public class Admin implements User
 	@Override
 	public UserType getUserType()
 	{
-		return UserType.admin;
+		return UserType.ADMIN;
 	}
 
 	@Override
