@@ -16,7 +16,7 @@ run_tests:
         POSTGRES_PASSWORD: test@123
         POSTGRES_HOST_AUTH_METHOD: trust
     script:
-        # - cp src/main/resources/application-dev.properties src/main/resources/application.properties
+        - cp src/main/resources/application-dev.properties src/main/resources/application.properties
         - mvn clean
         - mvn test -f pom.xml
 
@@ -36,7 +36,7 @@ dev_package:
         paths:
             - target/
     script: 
-        # - cp src/main/resources/application-dev.properties src/main/resources/application.properties
+        - cp src/main/resources/application-dev.properties src/main/resources/application.properties
         - mvn validate
         - mvn compile
         - mvn clean package
@@ -58,7 +58,7 @@ dev_build:
         paths:
             - target/
     script:
-        # - cp src/main/resources/application-dev.properties src/main/resources/application.properties
+        - cp src/main/resources/application-dev.properties src/main/resources/application.properties
         - docker build -t $IMAGE_NAME:$IMAGE_TAG .
         - docker push $IMAGE_NAME:$IMAGE_TAG
 
@@ -78,7 +78,7 @@ main_package:
         paths:
             - target/
     script: 
-        # - cp src/main/resources/application-dev.properties src/main/resources/application.properties
+        - cp src/main/resources/application-dev.properties src/main/resources/application.properties
         - mvn validate
         - mvn compile
         - mvn clean package
@@ -101,7 +101,7 @@ main_build:
         paths:
             - target/
     script:
-        # - cp src/main/resources/application-dev.properties src/main/resources/application.properties
+        - cp src/main/resources/application-dev.properties src/main/resources/application.properties
         - docker build -t $IMAGE_NAME:$IMAGE_TAG .
         - docker push $IMAGE_NAME:$IMAGE_TAG
 
