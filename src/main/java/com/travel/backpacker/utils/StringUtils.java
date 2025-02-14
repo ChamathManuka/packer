@@ -18,4 +18,12 @@ public class StringUtils
 	{
 		return !isNullOrEmpty( value );
 	}
+
+	public static boolean canBeLong(String str) {
+		return str != null && str.matches("-?\\d+");
+	}
+
+	public static boolean canBeInt(String str) {
+		return str != null && str.matches("-?\\d+");
+	}
 }

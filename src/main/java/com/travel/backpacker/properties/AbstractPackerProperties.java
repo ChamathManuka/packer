@@ -14,7 +14,7 @@ public abstract class AbstractPackerProperties implements PackerProperties
 	@Override
 	public String getProperty( String key )
 	{
-		return getProperty( key, "" );
+		return getProperty( key, "dev" );
 	}
 
 	private String getProperty( String key, String defaultValue, String... args )
