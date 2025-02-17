@@ -27,7 +27,7 @@ public class LoginOperation extends AbstractAccessOperation implements Operation
 	}
 
 	@Override
-	public HttpEntity execute( UnknownUser unknownUser )
+	public HttpEntity execute( UnknownUser unknownUser, Object... params )
 	{
 		user = getUserFromLogin( loginData ).orElseThrow( RuntimeException::new );
 		try

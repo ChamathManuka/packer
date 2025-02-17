@@ -1,8 +1,12 @@
 package com.travel.backpacker.dto;
 
+import com.travel.backpacker.dto.rsearch.RSearch;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class UserWrapper
 {
 	private long adminId;
@@ -14,7 +18,7 @@ public class UserWrapper
 
 	private String remoteAddress;
 	private List<User.UserType> roles = new ArrayList<>();
-
+	private RSearch rSearch;
 	//default constructor to support model attribute
 	private UserWrapper()
 	{
@@ -129,6 +133,14 @@ public class UserWrapper
 	public void setRoles( List<User.UserType> roles )
 	{
 		this.roles = roles;
+	}
+
+	public RSearch getrSearch() {
+		return rSearch;
+	}
+
+	public void setrSearch(RSearch rSearch) {
+		this.rSearch = rSearch;
 	}
 
 	public static class Builder

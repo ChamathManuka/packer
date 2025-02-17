@@ -30,7 +30,7 @@ public class AdminRegisterOperation extends AbstractAccessOperation implements O
 	}
 
 	@Override
-	public ResponseEntity execute( AdminUser adminUser )
+	public ResponseEntity execute( AdminUser adminUser, Object... params )
 	{
 		Admin admin = adminDao.save( createAdmin( adminUser ) );
 		return new ResponseEntity<>( admin, HttpStatus.CREATED );

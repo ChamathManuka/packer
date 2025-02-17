@@ -22,7 +22,7 @@ public class UnknownUserOperationFactory extends OperationFactory<UnknownUser> {
         return new PassengerRegisterOperation(userWrapper, operationRequiredComponents, rPassenger, platform);
     }
 
-//    public Operation<UnknownUser> getHotelSearchOperation(String city, UserWrapper userWrapper) {
-//        return new HotelSearchOperation(userWrapper, operationRequiredComponents, city);
-//    }
+    public Operation<UnknownUser> getHotelSearchOperation(UserWrapper userWrapper) {
+        return new HotelSearchOperation(userWrapper, operationRequiredComponents);
+    }
 }

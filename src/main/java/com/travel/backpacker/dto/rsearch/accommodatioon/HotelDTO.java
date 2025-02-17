@@ -17,6 +17,20 @@ public class HotelDTO
     private Integer starRating;
     private String amenities;
 
+    public HotelDTO(Long hotelId, String name, String street, String city, String state, String zip, String country, String website, String description, Integer starRating, String phoneNumber, String email) {
+        this.hotelId = hotelId;
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.country = country;
+        this.website = website;
+        this.description = description;
+        this.starRating = starRating;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

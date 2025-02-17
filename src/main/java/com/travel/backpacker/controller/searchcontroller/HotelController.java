@@ -1,16 +1,15 @@
 package com.travel.backpacker.controller.searchcontroller;
 
 import com.travel.backpacker.controller.AccessController;
+import com.travel.backpacker.dto.UserWrapper;
 import com.travel.backpacker.dto.iuser.UnknownUser;
 import com.travel.backpacker.dto.rsearch.accommodatioon.HotelDTO;
+import com.travel.backpacker.service.operations.Operation;
 import com.travel.backpacker.service.operations.factory.UnknownUserOperationFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,8 +27,9 @@ public class HotelController
     }
 
     @GetMapping("/search")
-    public HttpEntity<List<HotelDTO>> searchHotels(@RequestParam (required = false) String city)
+    public HttpEntity searchHotels(@RequestParam (required = false) String city, @RequestAttribute("userWrapper") UserWrapper userWrapper )
     {
-        return null;
+        Operation<UnknownUser> operation = unknownUserOperationFactory.getHotelSearchOperation(userWrapper);
+        return accessController.execute(userWrapper, operation);
     }
 }

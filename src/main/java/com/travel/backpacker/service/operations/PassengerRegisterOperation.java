@@ -30,7 +30,7 @@ public class PassengerRegisterOperation extends AbstractAccessOperation implemen
 	}
 
 	@Override
-	public ResponseEntity execute( UnknownUser unknownUser )
+	public ResponseEntity execute( UnknownUser unknownUser, Object... params )
 	{
 		Passenger passenger = passengerDao.save( createPassenger( rPassenger ) );
 		return new ResponseEntity<>( passenger, HttpStatus.CREATED );

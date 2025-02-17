@@ -5,11 +5,7 @@ import com.travel.backpacker.dto.iuser.AdminUser;
 import com.travel.backpacker.dto.iuser.UnknownUser;
 import com.travel.backpacker.dto.User;
 import com.travel.backpacker.dto.UserWrapper;
-import com.travel.backpacker.service.content.ContentDownloadOperation;
-import com.travel.backpacker.service.operations.AdminRegisterOperation;
-import com.travel.backpacker.service.operations.LoginOperation;
-import com.travel.backpacker.service.operations.Operation;
-import com.travel.backpacker.service.operations.PassengerRegisterOperation;
+import com.travel.backpacker.service.operations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -44,6 +40,12 @@ public abstract class AbstractImplementationController<U extends User> implement
 			adminUser.setUserType(User.UserType.ADMIN);
 			return operation.execute((U) adminUser);
 		}
+		if( operation instanceof HotelSearchOperation)
+		{
+			logger.info( "Now operating : " + operation.getClass() );
+			return operation.execute( ( U ) new UnknownUser() );
+		}
+
 		return null;
 
 	}

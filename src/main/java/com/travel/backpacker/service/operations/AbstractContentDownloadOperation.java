@@ -1,9 +1,7 @@
-package com.travel.backpacker.service.content;
+package com.travel.backpacker.service.operations;
 
 import com.travel.backpacker.dto.UserWrapper;
 import com.travel.backpacker.dto.rcontentdownload.RContentType;
-import com.travel.backpacker.service.operations.AbstractOperation;
-import com.travel.backpacker.service.operations.OperationRequiredComponents;
 
 abstract class AbstractContentDownloadOperation extends AbstractOperation
 {

@@ -1,4 +1,4 @@
-package com.travel.backpacker.service.content;
+package com.travel.backpacker.service.operations;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -11,8 +11,6 @@ import com.travel.backpacker.model.accommodation.RoomType;
 import com.travel.backpacker.repository.accommodation.HotelDao;
 import com.travel.backpacker.repository.accommodation.RoomDao;
 import com.travel.backpacker.repository.accommodation.RoomTypeDao;
-import com.travel.backpacker.service.operations.Operation;
-import com.travel.backpacker.service.operations.OperationRequiredComponents;
 import com.travel.backpacker.utils.StringUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -41,7 +39,7 @@ public class ContentDownloadOperation extends AbstractContentDownloadOperation i
 
 
     @Override
-    public HttpEntity execute(AdminUser adminUser) {
+    public HttpEntity execute(AdminUser adminUser, Object... params) {
 
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStreamHotel = classLoader.getResourceAsStream("hotel_data.csv");

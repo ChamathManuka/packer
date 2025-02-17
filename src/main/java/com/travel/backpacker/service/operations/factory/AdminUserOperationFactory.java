@@ -4,7 +4,7 @@ import com.travel.backpacker.dto.iuser.AdminUser;
 import com.travel.backpacker.dto.UserWrapper;
 import com.travel.backpacker.dto.rcontentdownload.RContentType;
 import com.travel.backpacker.dto.ruser.RAdmin;
-import com.travel.backpacker.service.content.ContentDownloadOperation;
+import com.travel.backpacker.service.operations.ContentDownloadOperation;
 import com.travel.backpacker.service.operations.AdminRegisterOperation;
 import com.travel.backpacker.service.operations.Operation;
 import com.travel.backpacker.service.operations.OperationRequiredComponents;
