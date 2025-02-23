@@ -4,6 +4,7 @@ import com.travel.backpacker.controller.AccessController;
 import com.travel.backpacker.dto.*;
 import com.travel.backpacker.dto.iuser.AdminUser;
 import com.travel.backpacker.dto.iuser.UnknownUser;
+import com.travel.backpacker.dto.ruser.OTPUser;
 import com.travel.backpacker.dto.ruser.RAdmin;
 import com.travel.backpacker.dto.ruser.RPassenger;
 import com.travel.backpacker.service.operations.Operation;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 //@Controller @ResponseBody
@@ -28,6 +31,8 @@ public class SignController
 	private final AccessController<AdminUser> adminUserAccessController;
 	private final UnknownUserOperationFactory unknownUserOperationFactory;
 	private final AdminUserOperationFactory adminUserOperationFactory;
+	private static final Logger logger = LoggerFactory.getLogger("SPLUNK_LOGS");
+	private static final Logger METRIC_LOGGER = LoggerFactory.getLogger("SPLUNK_METRICS");
 
 	@Autowired
 	public SignController(@Qualifier("access.exception.controller") AccessController<UnknownUser> unknownUserAccessController, @Qualifier("access.exception.controller")AccessController<AdminUser> adminUserAccessController, UnknownUserOperationFactory unknownUserOperationFactory, AdminUserOperationFactory adminUserOperationFactory )
@@ -38,6 +43,14 @@ public class SignController
 		this.adminUserOperationFactory = adminUserOperationFactory;
 	}
 
+	@PostMapping("/verify-otp")
+	public HttpEntity verifyOtp(@RequestBody OTPUser otpUser, @RequestAttribute("userWrapper") UserWrapper wrapper)
+	{
+		Operation<UnknownUser> operation = unknownUserOperationFactory.getOTPLoginOperation(wrapper, otpUser);
+		return unknownUserAccessController.execute(wrapper, operation);
+	}
+
+
 	@PostMapping("/login")
 	public HttpEntity login(@ModelAttribute("wrapper") UserWrapper wrapper, BindingResult bindingResult, @RequestBody LoginData loginData, BindingResult bindingResult1
 			, @RequestHeader(name = "Packer-Platform", required = false) String originPlatform )
@@ -47,6 +60,15 @@ public class SignController
 		{
 			//do something
 		}
+		String metricJson = String.format(
+				"{\"time\": %d, \"event\": \"metric\", \"fields\": {\"metric_name:%s\": %f}}",
+				System.currentTimeMillis() / 1000, "test.metric", 0.5
+		);
+
+		METRIC_LOGGER.info(metricJson);
+		logger.info("INFO: signcontroller was called");
+		logger.warn("WARN: Potential issue detected");
+		logger.error("ERROR: Something went wrong");
 		return unknownUserAccessController.execute( wrapper, operation );
 	}
 

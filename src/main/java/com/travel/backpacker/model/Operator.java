@@ -6,6 +6,7 @@ import org.springframework.http.HttpEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Operator")
@@ -59,6 +60,26 @@ public class Operator implements User
 	@Override
 	public void setUsername(String username) {
 
+	}
+
+	@Override
+	public String getOtpCode() {
+		return "";
+	}
+
+	@Override
+	public void setOtpCode(String otpCode) {
+
+	}
+
+	@Override
+	public void setOptExpiry(LocalDateTime optExpiry) {
+
+	}
+
+	@Override
+	public LocalDateTime getOptExpiry() {
+		return null;
 	}
 
 	@Override

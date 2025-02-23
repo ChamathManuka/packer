@@ -1,5 +1,6 @@
 package com.travel.backpacker.service.operations;
 
+import com.travel.backpacker.model.Passenger;
 import com.travel.backpacker.repository.UserDao;
 import com.travel.backpacker.dto.User;
 import com.travel.backpacker.dto.UserWrapper;
@@ -30,5 +31,10 @@ public abstract class AbstractOperation
 			default:
 				throw new RuntimeException();
 		}
+	}
+
+	protected Passenger saveUser( Passenger user )
+	{
+		return requiredComponents.getPassengerDao().save(user);
 	}
 }

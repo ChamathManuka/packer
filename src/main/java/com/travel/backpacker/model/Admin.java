@@ -6,6 +6,7 @@ import org.springframework.http.HttpEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "admin")
@@ -68,6 +69,26 @@ public class Admin implements User
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	@Override
+	public String getOtpCode() {
+		return "";
+	}
+
+	@Override
+	public void setOtpCode(String otpCode) {
+
+	}
+
+	@Override
+	public void setOptExpiry(LocalDateTime optExpiry) {
+
+	}
+
+	@Override
+	public LocalDateTime getOptExpiry() {
+		return null;
 	}
 
 	public void setEmail(String email) {

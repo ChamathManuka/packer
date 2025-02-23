@@ -46,6 +46,12 @@ public abstract class AbstractImplementationController<U extends User> implement
 			return operation.execute( ( U ) new UnknownUser() );
 		}
 
+		if(operation instanceof OTPLoginOperation)
+		{
+			logger.info( "Now operating : " + operation.getClass() );
+			return operation.execute( ( U ) new UnknownUser() );
+		}
+
 		return null;
 
 	}

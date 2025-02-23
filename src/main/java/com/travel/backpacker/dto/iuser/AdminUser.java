@@ -4,6 +4,8 @@ import com.travel.backpacker.dto.User;
 import com.travel.backpacker.dto.UserAction;
 import org.springframework.http.HttpEntity;
 
+import java.time.LocalDateTime;
+
 public class AdminUser implements User
 {
 	private String username;
@@ -42,6 +44,26 @@ public class AdminUser implements User
 	@Override
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	@Override
+	public String getOtpCode() {
+		return "";
+	}
+
+	@Override
+	public void setOtpCode(String otpCode) {
+
+	}
+
+	@Override
+	public void setOptExpiry(LocalDateTime optExpiry) {
+
+	}
+
+	@Override
+	public LocalDateTime getOptExpiry() {
+		return null;
 	}
 
 	@Override

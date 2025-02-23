@@ -3,6 +3,7 @@ package com.travel.backpacker.dto;
 import org.springframework.http.HttpEntity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public interface User extends UserAction<HttpEntity>, Serializable
 {
@@ -14,6 +15,11 @@ public interface User extends UserAction<HttpEntity>, Serializable
 
 	String getUsername();
 	void setUsername(String username);
+
+	String getOtpCode();
+	void setOtpCode(String otpCode);
+	void setOptExpiry(LocalDateTime optExpiry);
+	LocalDateTime getOptExpiry();
 
 	public char[] getPassword();
 

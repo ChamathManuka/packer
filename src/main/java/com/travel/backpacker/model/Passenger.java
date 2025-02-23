@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Passenger")
@@ -37,6 +39,13 @@ public class Passenger implements User
 
 	@Column(nullable = false, unique = true)
 	private String email;
+
+	@Column
+	private boolean mfaEnabled; // Whether MFA is enabled
+	@Column
+	private LocalDateTime optExpiry;
+	@Column
+	private String otpCode;     // Used for Email/SMS OTP
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "AddressId", unique = true)
@@ -153,6 +162,30 @@ public class Passenger implements User
 	@Override
 	public void setUserType(UserType userType) {
 
+	}
+
+	public boolean isMfaEnabled() {
+		return mfaEnabled;
+	}
+
+	public void setMfaEnabled(boolean mfaEnabled) {
+		this.mfaEnabled = mfaEnabled;
+	}
+
+	public LocalDateTime getOptExpiry() {
+		return optExpiry;
+	}
+
+	public void setOptExpiry(LocalDateTime optExpiry) {
+		this.optExpiry = optExpiry;
+	}
+
+	public String getOtpCode() {
+		return otpCode;
+	}
+
+	public void setOtpCode(String otpCode) {
+		this.otpCode = otpCode;
 	}
 
 	@Override

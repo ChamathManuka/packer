@@ -18,7 +18,7 @@ public class AuthImplInterceptor extends AbstractAuthInterceptor
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String requestURI = request.getRequestURI();
-		if(requestURI.startsWith("/login") || requestURI.startsWith("/register"))
+		if(requestURI.startsWith("/login") || requestURI.startsWith("/register") || requestURI.startsWith("/verify-otp"))
 		{
 			return true;
 		}

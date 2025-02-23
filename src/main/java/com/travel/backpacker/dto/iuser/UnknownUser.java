@@ -4,6 +4,8 @@ import com.travel.backpacker.dto.User;
 import com.travel.backpacker.dto.UserAction;
 import org.springframework.http.HttpEntity;
 
+import java.time.LocalDateTime;
+
 public class UnknownUser implements User
 {
 	@Override
@@ -37,6 +39,26 @@ public class UnknownUser implements User
 	@Override
 	public void setUsername(String username) {
 
+	}
+
+	@Override
+	public String getOtpCode() {
+		return "";
+	}
+
+	@Override
+	public void setOtpCode(String otpCode) {
+
+	}
+
+	@Override
+	public void setOptExpiry(LocalDateTime optExpiry) {
+
+	}
+
+	@Override
+	public LocalDateTime getOptExpiry() {
+		return null;
 	}
 
 	@Override

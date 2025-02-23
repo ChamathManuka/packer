@@ -5,8 +5,16 @@ import com.travel.backpacker.dto.iuser.UnknownUser;
 import com.travel.backpacker.dto.User;
 import com.travel.backpacker.dto.UserLoginAction;
 import com.travel.backpacker.dto.UserWrapper;
+import com.travel.backpacker.model.Passenger;
+import com.travel.backpacker.repository.UserDao;
+import com.travel.backpacker.service.mfa.MFAEmailService;
+import com.travel.backpacker.service.mfa.OTPService;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+
+import java.time.LocalDateTime;
 
 public class LoginOperation extends AbstractAccessOperation implements Operation<UnknownUser>
 {
@@ -19,12 +27,15 @@ public class LoginOperation extends AbstractAccessOperation implements Operation
 
 	private User user;
 
-	public LoginOperation( UserWrapper userWrapper, OperationRequiredComponents requiredComponents, LoginData loginData, String platform )
+	private final MFAEmailService mfaEmailService;
+
+	public LoginOperation(UserWrapper userWrapper, OperationRequiredComponents requiredComponents, LoginData loginData, String platform)
 	{
 		super( userWrapper, requiredComponents );
 		this.loginData = loginData;
 		this.platform = platform;
-	}
+        this.mfaEmailService = requiredComponents.getMFAEmailService();
+    }
 
 	@Override
 	public HttpEntity execute( UnknownUser unknownUser, Object... params )
@@ -47,6 +58,19 @@ public class LoginOperation extends AbstractAccessOperation implements Operation
 		{
 			throw new RuntimeException( "your account is inactive" );
 		}
+
+		String otp = OTPService.generateOTP();
+		user.setOtpCode(otp);
+		user.setOptExpiry(LocalDateTime.now().plusMinutes(5));
+		User.UserType type = loginData.getType();
+		if(type == User.UserType.PASSENGER)
+		{
+			Passenger passenger = (Passenger) user;
+			saveUser(passenger);
+//			mfaEmailService.sendOTP(passenger.getEmail(), otp);
+			return new ResponseEntity<>( "OTP Sent! "+otp, HttpStatus.OK );
+		}
+
 		return userLoginAction.execute( user, loginData, requiredComponents, userWrapper );
 	}
 
