@@ -16,7 +16,7 @@ import java.util.Map;
 public class RedisCacheConfig {
     @Bean
     @Primary
-    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+    public CacheManager localCacheManager(RedisConnectionFactory connectionFactory) {
         // Default configuration (TTL = 60 seconds)
         RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofSeconds(60))

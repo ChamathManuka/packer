@@ -1,6 +1,8 @@
 package com.travel.backpacker.dto.rsearch.accommodatioon;
 
-public class HotelDTO
+import java.io.Serializable;
+
+public class HotelDTO implements Serializable
 {
     private Long id;
     private Long hotelId;

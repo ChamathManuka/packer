@@ -12,16 +12,16 @@ import javax.annotation.PostConstruct;
 public class CacheMonitorService
 {
     @Autowired
-    private CacheManager cacheManager;
+    private CacheManager localCacheManager;
 
     @PostConstruct
     public void init() {
-        System.out.println("cacheManager: " + (cacheManager == null ? "null" : "Injected"));
+        System.out.println("cacheManager: " + (localCacheManager == null ? "null" : "Injected"));
     }
 
     public void printCacheStatistics(String cacheName)
     {
-        Cache cache = cacheManager.getCache(cacheName);
+        Cache cache = localCacheManager.getCache(cacheName);
         if(cache != null)
         {
             System.out.println(cache.getName());

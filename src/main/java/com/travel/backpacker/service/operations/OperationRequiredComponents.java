@@ -8,6 +8,7 @@ import com.travel.backpacker.dto.UserLoginAction;
 import com.travel.backpacker.properties.DefaultPackerProperties;
 import com.travel.backpacker.repository.accommodation.*;
 import com.travel.backpacker.service.mfa.MFAEmailService;
+import com.travel.backpacker.service.operations.cacheService.HotelSearchCacheService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -43,6 +44,9 @@ public class OperationRequiredComponents implements BeanFactoryAware {
         return (SCryptPasswordEncoder) factory.getBean("createPasswordEncorder");
     }
     public MFAEmailService getMFAEmailService() {return factory.getBean(MFAEmailService.class);}
+
+    public HotelSearchCacheService getHotelSearchCacheService() {return factory.getBean(HotelSearchCacheService.class);}
+
     public UserLoginAction getUserLoginAction() {
         return factory.getBean(UserLoginAction.class);
     }

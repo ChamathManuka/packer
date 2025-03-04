@@ -29,7 +29,7 @@ public class HotelSearchCacheService
     @Cacheable(value = "longLived", key = "#city")
     public List<HotelDTO> getHotelSearchResults(String city, OperationRequiredComponents requiredComponents)
     {
-//        cacheMonitorService.printCacheStatistics("shortLived");
+        cacheMonitorService.printCacheStatistics("shortLived");
         System.out.println("Fetching hotels from the Database for city : " + city);
         HotelDao hotelDao = requiredComponents.getHotelDao();
         for(int x= 0; x < 1000000; x++){ //delayed testing

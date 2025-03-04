@@ -31,7 +31,7 @@ public class HotelSearchOperation extends AbstractSearchOperation implements Ope
     @Autowired
     public HotelSearchOperation(UserWrapper userWrapper, OperationRequiredComponents requiredComponents){
         super(userWrapper, requiredComponents);
-        hotelSearchCacheService = new HotelSearchCacheService();
+        hotelSearchCacheService = requiredComponents.getHotelSearchCacheService();
     }
 
     @Override
