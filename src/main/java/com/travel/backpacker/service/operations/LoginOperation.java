@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 public class LoginOperation extends AbstractAccessOperation implements Operation<UnknownUser> {
     private final LoginData loginData;
-    private final String platform;
+//    private final String platform;
 
     private final SCryptPasswordEncoder passwordEncorder = requiredComponents.getPasswordEncorder();
 
@@ -30,7 +30,7 @@ public class LoginOperation extends AbstractAccessOperation implements Operation
     public LoginOperation(UserWrapper userWrapper, OperationRequiredComponents requiredComponents, LoginData loginData, String platform) {
         super(userWrapper, requiredComponents);
         this.loginData = loginData;
-        this.platform = platform;
+//        this.platform = platform;
         this.mfaEmailService = requiredComponents.getMFAEmailService();
     }
 
