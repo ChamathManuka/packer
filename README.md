@@ -26,6 +26,8 @@ Backpackers traveling on limited budgets often struggle with:
 - User signup and login
 - JWT-based authentication
 - Multi-factor authentication (MFA)
+- Role-based access control (User / Admin)
+- Admin-level accommodation management (add and manage accommodation data)
 - Accommodation search service
 - REST API gateway and service orchestration
 - Redis-based caching
@@ -43,7 +45,8 @@ Backpackers traveling on limited budgets often struggle with:
 ---
 
 ## Architecture Overview
-Packer is designed using a **microservice-oriented architecture** with stateless backend services to support scalability and cloud deployment.
+Packer is designed using a **microservice-oriented architecture** with stateless backend services to support scalability and cloud deployment. Administrative operations (such as managing hotel data) are protected using role-based authorization and isolated from public user-facing endpoints.
+
 
 - Role based authentication handled via JWT + MFA
 - Search services optimized using Redis caching
@@ -53,7 +56,7 @@ Packer is designed using a **microservice-oriented architecture** with stateless
 - Containerized deployment using Docker
 
 The system is intentionally structured to reflect **production-style backend design**, even though the platform is still evolving.
-
+![Packer Architecture](docs/architecture.png)
 ---
 
 ## Technical Highlights
@@ -61,6 +64,7 @@ The system is intentionally structured to reflect **production-style backend des
 - **Factory design pattern** for extensible service creation
 - **Redis caching strategy** to reduce database load on search endpoints
 - **JWT + MFA authentication flow** for secure access
+- **Role-based authorization separating public user actions from administrative operations
 - **Centralized logging** for debugging and monitoring
 - **Docker + CI/CD pipelines** for reproducible builds and deployments
 
