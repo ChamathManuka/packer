@@ -8,24 +8,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserLoginAction implements UserAction<HttpEntity>
-{
-	private final AuthImplInterceptor jwtInterceptor;
+public class UserLoginAction implements UserAction<HttpEntity> {
+    private final AuthImplInterceptor jwtInterceptor;
 
-	@Autowired
-	public UserLoginAction( AuthImplInterceptor jwtInterceptor )
-	{
-		this.jwtInterceptor = jwtInterceptor;
-	}
+    @Autowired
+    public UserLoginAction(AuthImplInterceptor jwtInterceptor) {
+        this.jwtInterceptor = jwtInterceptor;
+    }
 
-	@Override
-	public HttpEntity execute( UserAction userAction, Object... args )
-	{
-		return new ResponseEntity( getPackerToken( ( User ) userAction ), HttpStatus.OK );
-	}
+    @Override
+    public HttpEntity execute(UserAction userAction, Object... args) {
+        return new ResponseEntity(getPackerToken((User) userAction), HttpStatus.OK);
+    }
 
-	public String getPackerToken( User user )
-	{
-		return jwtInterceptor.getPackerToken( user );
-	}
+    public String getPackerToken(User user) {
+        return jwtInterceptor.getPackerToken(user);
+    }
 }

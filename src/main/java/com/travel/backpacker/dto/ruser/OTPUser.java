@@ -1,7 +1,6 @@
 package com.travel.backpacker.dto.ruser;
 
-public class OTPUser
-{
+public class OTPUser {
     private String username;
     private String otp;
 

@@ -40,8 +40,7 @@ public class HotelSearchCacheService {
             hotelList = hotelDao.getAllByCity(city);
         }
 
-        return hotelList.stream().map(hotel -> new HotelDTO(hotel.getHotelId(), hotel.getName(), hotel.getStreet(),
-                hotel.getCity(), hotel.getState(), hotel.getZip(), hotel.getCountry(), hotel.getWebsite(), hotel.getDescription(), hotel.getStarRating(), hotel.getPhoneNumber(), hotel.getEmail())).toList();
+        return hotelList.stream().map(hotel -> new HotelDTO(hotel.getHotelId(), hotel.getName(), hotel.getStreet(), hotel.getCity(), hotel.getState(), hotel.getZip(), hotel.getCountry(), hotel.getWebsite(), hotel.getDescription(), hotel.getStarRating(), hotel.getPhoneNumber(), hotel.getEmail())).toList();
     }
 
     @CacheEvict(value = "hotels", allEntries = true)

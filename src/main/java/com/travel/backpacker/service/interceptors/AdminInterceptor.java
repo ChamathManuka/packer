@@ -10,18 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
-public class AdminInterceptor extends AbstractAuthInterceptor
-{
-    protected AdminInterceptor(DefaultPackerProperties packerProperties)
-    {
+public class AdminInterceptor extends AbstractAuthInterceptor {
+    protected AdminInterceptor(DefaultPackerProperties packerProperties) {
         super(packerProperties);
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token_subject = getUserIdFromToken(request);
-        if(StringUtils.isNotNullOrEmpty(token_subject) && token_subject.startsWith("ADMIN"))
-        {
+        if (StringUtils.isNotNullOrEmpty(token_subject) && token_subject.startsWith("ADMIN")) {
             updateWrapper(token_subject, request);
             return checkTokenValidity(request, response);
         }

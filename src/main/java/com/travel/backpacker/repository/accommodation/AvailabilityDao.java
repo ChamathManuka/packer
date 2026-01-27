@@ -5,5 +5,6 @@ import org.springframework.data.repository.Repository;
 
 public interface AvailabilityDao extends Repository<Availability, Integer> {
     Availability findById(int id);
+
     Availability save(Availability availability);
 }

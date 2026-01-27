@@ -18,20 +18,15 @@ public class RedisCacheConfig {
     @Primary
     public CacheManager localCacheManager(RedisConnectionFactory connectionFactory) {
         // Default configuration (TTL = 60 seconds)
-        RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofSeconds(60))
-                .disableCachingNullValues(); // Avoid caching null values
+        RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(60)).disableCachingNullValues(); // Avoid caching null values
 
         // Custom configuration for specific caches
         Map<String, RedisCacheConfiguration> cacheConfigurations = new HashMap<>();
-        cacheConfigurations.put("shortLived", RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofSeconds(30)));
-        cacheConfigurations.put("longLived", RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(10)));
+        cacheConfigurations.put("shortLived", RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(30)));
+        cacheConfigurations.put("longLived", RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)));
 
         // Build RedisCacheManager with the custom configurations
-        return RedisCacheManager.builder(connectionFactory)
-                .cacheDefaults(defaultCacheConfig)  // Default configuration
+        return RedisCacheManager.builder(connectionFactory).cacheDefaults(defaultCacheConfig)  // Default configuration
                 .withInitialCacheConfigurations(cacheConfigurations)  // Custom configurations
                 .build();
     }

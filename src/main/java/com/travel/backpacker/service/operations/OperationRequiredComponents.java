@@ -1,11 +1,10 @@
 package com.travel.backpacker.service.operations;
 
+import com.travel.backpacker.dto.UserLoginAction;
+import com.travel.backpacker.properties.DefaultPackerProperties;
 import com.travel.backpacker.repository.AdminDao;
 import com.travel.backpacker.repository.OperatorDao;
 import com.travel.backpacker.repository.PassengerDao;
-
-import com.travel.backpacker.dto.UserLoginAction;
-import com.travel.backpacker.properties.DefaultPackerProperties;
 import com.travel.backpacker.repository.accommodation.*;
 import com.travel.backpacker.service.mfa.MFAEmailService;
 import com.travel.backpacker.service.operations.cacheService.HotelSearchCacheService;
@@ -43,9 +42,14 @@ public class OperationRequiredComponents implements BeanFactoryAware {
     public SCryptPasswordEncoder getPasswordEncorder() {
         return (SCryptPasswordEncoder) factory.getBean("createPasswordEncorder");
     }
-    public MFAEmailService getMFAEmailService() {return factory.getBean(MFAEmailService.class);}
 
-    public HotelSearchCacheService getHotelSearchCacheService() {return factory.getBean(HotelSearchCacheService.class);}
+    public MFAEmailService getMFAEmailService() {
+        return factory.getBean(MFAEmailService.class);
+    }
+
+    public HotelSearchCacheService getHotelSearchCacheService() {
+        return factory.getBean(HotelSearchCacheService.class);
+    }
 
     public UserLoginAction getUserLoginAction() {
         return factory.getBean(UserLoginAction.class);
@@ -55,15 +59,25 @@ public class OperationRequiredComponents implements BeanFactoryAware {
         return factory.getBean(HotelDao.class);
     }
 
-    public RoomDao getRoomDao() { return factory.getBean(RoomDao.class); }
+    public RoomDao getRoomDao() {
+        return factory.getBean(RoomDao.class);
+    }
 
-    public AvailabilityDao getAvailabilityDao() {return factory.getBean(AvailabilityDao.class); }
+    public AvailabilityDao getAvailabilityDao() {
+        return factory.getBean(AvailabilityDao.class);
+    }
 
-    public RoomTypeDao getRoomTypeDao() {return factory.getBean(RoomTypeDao.class); }
+    public RoomTypeDao getRoomTypeDao() {
+        return factory.getBean(RoomTypeDao.class);
+    }
 
-    public RoomImageDao getRoomImageDao() {return factory.getBean(RoomImageDao.class); }
+    public RoomImageDao getRoomImageDao() {
+        return factory.getBean(RoomImageDao.class);
+    }
 
-    public HotelImageDao getHotelImageDao() {return factory.getBean(HotelImageDao.class); }
+    public HotelImageDao getHotelImageDao() {
+        return factory.getBean(HotelImageDao.class);
+    }
 
 
 }

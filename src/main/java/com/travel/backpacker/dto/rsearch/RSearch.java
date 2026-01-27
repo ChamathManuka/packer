@@ -3,8 +3,7 @@ package com.travel.backpacker.dto.rsearch;
 
 import java.util.Date;
 
-public class RSearch
-{
+public class RSearch {
     private OperationType operationType;
 
     private String city;
@@ -16,8 +15,7 @@ public class RSearch
     private int nightCount;
 
 
-    public enum OperationType
-    {
+    public enum OperationType {
         ACCOMMODATION
     }
 

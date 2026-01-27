@@ -2,8 +2,8 @@ package com.travel.backpacker.service.operations;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import com.travel.backpacker.dto.iuser.AdminUser;
 import com.travel.backpacker.dto.UserWrapper;
+import com.travel.backpacker.dto.iuser.AdminUser;
 import com.travel.backpacker.dto.rcontentdownload.RContentType;
 import com.travel.backpacker.model.accommodation.Hotel;
 import com.travel.backpacker.model.accommodation.Room;
@@ -16,19 +16,22 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
-public class ContentDownloadOperation extends AbstractContentDownloadOperation implements Operation<AdminUser>
-{
+public class ContentDownloadOperation extends AbstractContentDownloadOperation implements Operation<AdminUser> {
     private final RContentType type;
     private final HotelDao hotelDao;
     private final RoomDao roomDao;
     private final RoomTypeDao roomTypeDao;
+
     public ContentDownloadOperation(UserWrapper userWrapper, OperationRequiredComponents requiredComponents, RContentType type) {
         super(userWrapper, requiredComponents);
         this.type = type;
@@ -99,8 +102,8 @@ public class ContentDownloadOperation extends AbstractContentDownloadOperation i
 
             ExecutorService roomExecutorService = Executors.newFixedThreadPool(roomSize);
             List<Callable<Boolean>> roomCallableList = Arrays.asList(
-                    () -> saveRoomData(roomList.subList(0, roomSize/2)),
-                    () -> saveRoomData(roomList.subList(roomSize/2, roomSize))
+                    () -> saveRoomData(roomList.subList(0, roomSize / 2)),
+                    () -> saveRoomData(roomList.subList(roomSize / 2, roomSize))
             );
             List<Future<Boolean>> roomFutureList = roomExecutorService.invokeAll(roomCallableList);
             roomExecutorService.shutdown();
@@ -122,26 +125,19 @@ public class ContentDownloadOperation extends AbstractContentDownloadOperation i
 
     }
 
-    private boolean saveRoomTypeData(List<List<String>> roomTypeList)
-    {
-        for (List<String> line : roomTypeList)
-        {
+    private boolean saveRoomTypeData(List<List<String>> roomTypeList) {
+        for (List<String> line : roomTypeList) {
             RoomType roomType = new RoomType();
-            if (StringUtils.isNotNullOrEmpty(line.get(0)) && StringUtils.isNotNullOrEmpty(line.get(1)))
-            {
+            if (StringUtils.isNotNullOrEmpty(line.get(0)) && StringUtils.isNotNullOrEmpty(line.get(1))) {
                 roomType.setRoomTypeId(Long.parseLong(line.get(0)));
                 roomType.setName(line.get(1));
                 roomType.setDescription(line.get(2));
                 roomType.setAmenities(line.get(3));
-                try
-                {
-                    if(roomDao.findRoomByRoomId(roomType.getRoomTypeId()) == null)
-                    {
+                try {
+                    if (roomDao.findRoomByRoomId(roomType.getRoomTypeId()) == null) {
                         roomTypeDao.save(roomType);
                     }
-                }
-                catch (RuntimeException e)
-                {
+                } catch (RuntimeException e) {
                     throw new RuntimeException(e);
                 }
 
@@ -164,15 +160,13 @@ public class ContentDownloadOperation extends AbstractContentDownloadOperation i
                     room.setPrice(BigDecimal.valueOf(Long.parseLong(line.get(6))));
                     room.setDescription(line.get(7));
 
-                    if(roomDao.findRoomByRoomId(room.getRoomId()) == null)
-                    {
+                    if (roomDao.findRoomByRoomId(room.getRoomId()) == null) {
                         roomDao.save(room);
                     }
 
                 }
             }
-        } catch (RuntimeException e)
-        {
+        } catch (RuntimeException e) {
             throw new RuntimeException("Exception while adding the data to database");
         }
         return true;
@@ -197,15 +191,13 @@ public class ContentDownloadOperation extends AbstractContentDownloadOperation i
                     hotel.setStarRating(StringUtils.canBeInt(line.get(11)) ? Integer.parseInt(line.get(11)) : 0);
                     hotel.setAmenities(line.get(12));
 
-                    if(hotelDao.findHotelByHotelId(hotel.getHotelId()) == null)
-                    {
+                    if (hotelDao.findHotelByHotelId(hotel.getHotelId()) == null) {
                         hotelDao.save(hotel);
                     }
 
                 }
             }
-        } catch (RuntimeException e)
-        {
+        } catch (RuntimeException e) {
             throw new RuntimeException("Exception while adding the data to database");
         }
         return true;

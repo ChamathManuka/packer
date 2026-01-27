@@ -15,8 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/hotels")
-public class HotelController
-{
+public class HotelController {
     private final AccessController<UnknownUser> accessController;
     private final UnknownUserOperationFactory unknownUserOperationFactory;
 
@@ -27,8 +26,7 @@ public class HotelController
     }
 
     @GetMapping("/search")
-    public HttpEntity searchHotels(@RequestParam (required = false) String city, @RequestAttribute("userWrapper") UserWrapper userWrapper )
-    {
+    public HttpEntity searchHotels(@RequestParam(required = false) String city, @RequestAttribute("userWrapper") UserWrapper userWrapper) {
         Operation<UnknownUser> operation = unknownUserOperationFactory.getHotelSearchOperation(userWrapper);
         return accessController.execute(userWrapper, operation);
     }

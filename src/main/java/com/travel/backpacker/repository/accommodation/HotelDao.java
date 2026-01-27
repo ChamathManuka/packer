@@ -7,11 +7,10 @@ import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
-public interface HotelDao extends JpaRepository<Hotel, Long>
-{
-	Hotel save(Hotel hotel);
+public interface HotelDao extends JpaRepository<Hotel, Long> {
+    Hotel save(Hotel hotel);
 
-	Hotel findHotelByHotelId(Long hotelId);
+    Hotel findHotelByHotelId(Long hotelId);
 
-	List<Hotel> getAllByCity(String city);
+    List<Hotel> getAllByCity(String city);
 }

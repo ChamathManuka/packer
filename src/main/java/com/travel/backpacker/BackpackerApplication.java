@@ -9,8 +9,8 @@ import org.springframework.cache.annotation.EnableCaching;
 
 public class BackpackerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BackpackerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BackpackerApplication.class, args);
+    }
 
 }

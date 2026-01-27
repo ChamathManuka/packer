@@ -10,93 +10,85 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Operator")
-public class Operator implements User
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
-	private Long id;
+public class Operator implements User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-	@Column(name = "name", nullable = false)
-	private String username;
+    @Column(name = "name", nullable = false)
+    private String username;
 
-	@Email
-	@Column(name = "email", nullable = false)
-	private String email;
+    @Email
+    @Column(name = "email", nullable = false)
+    private String email;
 
-	@Column(name = "password", nullable = false, unique = true)
-	private char[] password;
+    @Column(name = "password", nullable = false, unique = true)
+    private char[] password;
 
-	@Column(name = "active", nullable = false)
-	private boolean active;
+    @Column(name = "active", nullable = false)
+    private boolean active;
 
-	public Long getId()
-	{
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId( Long id )
-	{
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@Override
-	public UserType getUserType()
-	{
-		return UserType.OPERATOR;
-	}
+    @Override
+    public UserType getUserType() {
+        return UserType.OPERATOR;
+    }
 
-	@Override
-	public void setUserType(UserType userType) {
+    @Override
+    public void setUserType(UserType userType) {
 
-	}
+    }
 
-	@Override
-	public String getUsername()
-	{
-		return this.username;
-	}
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
 
-	@Override
-	public void setUsername(String username) {
+    @Override
+    public void setUsername(String username) {
 
-	}
+    }
 
-	@Override
-	public String getOtpCode() {
-		return "";
-	}
+    @Override
+    public String getOtpCode() {
+        return "";
+    }
 
-	@Override
-	public void setOtpCode(String otpCode) {
+    @Override
+    public void setOtpCode(String otpCode) {
 
-	}
+    }
 
-	@Override
-	public void setOptExpiry(LocalDateTime optExpiry) {
+    @Override
+    public void setOptExpiry(LocalDateTime optExpiry) {
 
-	}
+    }
 
-	@Override
-	public LocalDateTime getOptExpiry() {
-		return null;
-	}
+    @Override
+    public LocalDateTime getOptExpiry() {
+        return null;
+    }
 
-	@Override
-	public char[] getPassword()
-	{
-		return this.password;
-	}
+    @Override
+    public char[] getPassword() {
+        return this.password;
+    }
 
-	@Override
-	public boolean isActive()
-	{
-		return this.active;
-	}
+    @Override
+    public boolean isActive() {
+        return this.active;
+    }
 
-	@Override
-	public HttpEntity execute( UserAction userAction, Object... args )
-	{
-		return null;
-	}
+    @Override
+    public HttpEntity execute(UserAction userAction, Object... args) {
+        return null;
+    }
 }

@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-public class AccommodationContentController
-{
+public class AccommodationContentController {
     private final AccessController<AdminUser> accessController;
     private final AdminUserOperationFactory adminUserOperationFactory;
 
@@ -27,9 +26,8 @@ public class AccommodationContentController
 
 
     @PostMapping("admin/content/download/accom")
-    public HttpEntity accomDownload(@RequestAttribute("userWrapper") UserWrapper wrapper, @Valid @RequestBody RContentType type)
-    {
-        Operation<AdminUser> operation = adminUserOperationFactory.getContentDownloadOperation(wrapper,type );
-        return accessController.execute( wrapper, operation );
+    public HttpEntity accomDownload(@RequestAttribute("userWrapper") UserWrapper wrapper, @Valid @RequestBody RContentType type) {
+        Operation<AdminUser> operation = adminUserOperationFactory.getContentDownloadOperation(wrapper, type);
+        return accessController.execute(wrapper, operation);
     }
 }

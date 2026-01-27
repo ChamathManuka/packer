@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("access.lock.controller")
-public class AccessLockController<U extends User> extends AbstractLockController<U> implements AccessController<U>
-{
-	protected AccessLockController( @Qualifier("access.implementation.controller") Controller controller )
-	{
-		super( controller );
-	}
+public class AccessLockController<U extends User> extends AbstractLockController<U> implements AccessController<U> {
+    protected AccessLockController(@Qualifier("access.implementation.controller") Controller<U> controller) {
+        super(controller);
+    }
 }

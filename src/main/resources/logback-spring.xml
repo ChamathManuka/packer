@@ -1,0 +1,65 @@
+<configuration>
+
+    <!-- Console Logger (for debugging locally) -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Splunk Appender for Logs -->
+    <appender name="SPLUNK_LOGS" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <url>http://localhost:8088</url>  <!-- Splunk HEC URL -->
+        <token>5a31c7cb-de3a-4b52-b99e-f1e80324718b</token>  <!-- Replace with your token -->
+        <index>main</index>  <!-- Index for logs -->
+        <sourcetype>_json</sourcetype>
+        <batch_size_count>5</batch_size_count>
+        <batch_interval>2000</batch_interval>
+        <send_mode>sequential</send_mode>
+        <disableCertificateValidation>true</disableCertificateValidation>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>{"event": "%msg", "level": "%level", "logger": "%logger", "thread": "%thread", "timestamp":
+                "%d{yyyy-MM-dd HH:mm:ss}"}
+            </pattern>
+        </layout>
+    </appender>
+
+    <!-- Splunk Appender for Metrics -->
+    <appender name="SPLUNK_METRICS" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <url>http://localhost:8088</url>  <!-- Splunk HEC URL -->
+        <token>5a31c7cb-de3a-4b52-b99e-f1e80324718b</token>  <!-- Replace with your token -->
+        <index>metrics</index>  <!-- Ensure it's a metric index -->
+        <sourcetype>mstats</sourcetype>  <!--  Required for metric indexes -->
+        <batch_size_count>3</batch_size_count>  <!-- Faster metric ingestion -->
+        <batch_interval>1000</batch_interval>  <!-- Send metrics every 1 second -->
+        <send_mode>sequential</send_mode>
+        <disableCertificateValidation>true</disableCertificateValidation>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>{"time": "%d{UNIX_SECONDS}", "event": "metric", "fields": {"metric_name:test.metric": %msg}}
+            </pattern>
+        </layout>
+    </appender>
+
+    <!-- Async Wrappers to Prevent Blocking -->
+    <appender name="ASYNC_SPLUNK_LOGS" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SPLUNK_LOGS"/>
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <appender name="ASYNC_SPLUNK_METRICS" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SPLUNK_METRICS"/>
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <!-- Root Logger (Sending logs and metrics to both Splunk & Console) -->
+    <root level="info">
+        <appender-ref ref="STDOUT"/>  <!-- Logs to console -->
+        <appender-ref ref="ASYNC_SPLUNK_LOGS"/>  <!-- Logs to Splunk -->
+        <appender-ref ref="ASYNC_SPLUNK_METRICS"/>  <!-- Metrics to Splunk -->
+    </root>
+
+</configuration>

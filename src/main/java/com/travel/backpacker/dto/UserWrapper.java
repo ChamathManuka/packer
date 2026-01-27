@@ -7,154 +7,128 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserWrapper
-{
-	private long adminId;
-	private long operatorId;
-	private long supplierId;
-	private long passengerId;
-	private long unknownUserId;
-	private boolean active;
+public class UserWrapper {
+    private long adminId;
+    private long operatorId;
+    private long supplierId;
+    private long passengerId;
+    private long unknownUserId;
+    private boolean active;
 
-	private String remoteAddress;
-	private List<User.UserType> roles = new ArrayList<>();
-	private RSearch rSearch;
-	//default constructor to support model attribute
-	private UserWrapper()
-	{
-	}
+    private String remoteAddress;
+    private List<User.UserType> roles = new ArrayList<>();
+    private RSearch rSearch;
 
-	private UserWrapper( long adminId, long operatorId, long supplierId, long passengerId, long unknownUserId,
-			boolean active )
-	{
-		this.adminId = adminId > 0L ? adminId : 0L;
-		this.operatorId = operatorId > 0L ? operatorId : 0L;
-		this.supplierId = supplierId > 0L ? supplierId : 0L;
-		this.passengerId = passengerId > 0L ? passengerId : 0L;
-		this.unknownUserId = unknownUserId > 0L ? unknownUserId : 0L;
-		this.active = active;
-		if ( this.adminId != 0L )
-		{
-			roles.add( User.UserType.ADMIN );
-		}
-		if ( this.operatorId != 0L )
-		{
-			roles.add( User.UserType.OPERATOR );
-		}
-		if ( this.supplierId != 0L )
-		{
-			roles.add( User.UserType.SUPPLIER );
-		}
-		if ( this.passengerId != 0L )
-		{
-			roles.add( User.UserType.PASSENGER );
-		}
-		if ( this.unknownUserId != 0L )
-		{
-			roles.add( User.UserType.UNKNOWNUSER );
-		}
-	}
+    //default constructor to support model attribute
+    private UserWrapper() {
+    }
 
-	public long getAdminId()
-	{
-		return adminId;
-	}
+    private UserWrapper(long adminId, long operatorId, long supplierId, long passengerId, long unknownUserId, boolean active) {
+        this.adminId = adminId > 0L ? adminId : 0L;
+        this.operatorId = operatorId > 0L ? operatorId : 0L;
+        this.supplierId = supplierId > 0L ? supplierId : 0L;
+        this.passengerId = passengerId > 0L ? passengerId : 0L;
+        this.unknownUserId = unknownUserId > 0L ? unknownUserId : 0L;
+        this.active = active;
+        if (this.adminId != 0L) {
+            roles.add(User.UserType.ADMIN);
+        }
+        if (this.operatorId != 0L) {
+            roles.add(User.UserType.OPERATOR);
+        }
+        if (this.supplierId != 0L) {
+            roles.add(User.UserType.SUPPLIER);
+        }
+        if (this.passengerId != 0L) {
+            roles.add(User.UserType.PASSENGER);
+        }
+        if (this.unknownUserId != 0L) {
+            roles.add(User.UserType.UNKNOWNUSER);
+        }
+    }
 
-	public void setAdminId( long adminId )
-	{
-		this.adminId = adminId;
-	}
+    public long getAdminId() {
+        return adminId;
+    }
 
-	public long getUnknownUserId()
-	{
-		return unknownUserId;
-	}
+    public void setAdminId(long adminId) {
+        this.adminId = adminId;
+    }
 
-	public void setUnknownUserId( long unknownUserId )
-	{
-		this.unknownUserId = unknownUserId;
-	}
+    public long getUnknownUserId() {
+        return unknownUserId;
+    }
 
-	public long getPassengerId()
-	{
-		return passengerId;
-	}
+    public void setUnknownUserId(long unknownUserId) {
+        this.unknownUserId = unknownUserId;
+    }
 
-	public void setPassengerId( long passengerId )
-	{
-		this.passengerId = passengerId;
-	}
+    public long getPassengerId() {
+        return passengerId;
+    }
 
-	public long getOperatorId()
-	{
-		return operatorId;
-	}
+    public void setPassengerId(long passengerId) {
+        this.passengerId = passengerId;
+    }
 
-	public void setOperatorId( long operatorId )
-	{
-		this.operatorId = operatorId;
-	}
+    public long getOperatorId() {
+        return operatorId;
+    }
 
-	public long getSupplierId()
-	{
-		return supplierId;
-	}
+    public void setOperatorId(long operatorId) {
+        this.operatorId = operatorId;
+    }
 
-	public void setSupplierId( long supplierId )
-	{
-		this.supplierId = supplierId;
-	}
+    public long getSupplierId() {
+        return supplierId;
+    }
 
-	public boolean isActive()
-	{
-		return active;
-	}
+    public void setSupplierId(long supplierId) {
+        this.supplierId = supplierId;
+    }
 
-	public void setActive( boolean active )
-	{
-		this.active = active;
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public String getRemoteAddress()
-	{
-		return remoteAddress;
-	}
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-	public void setRemoteAddress( String remoteAddress )
-	{
-		this.remoteAddress = remoteAddress;
-	}
+    public String getRemoteAddress() {
+        return remoteAddress;
+    }
 
-	public List<User.UserType> getRoles()
-	{
-		return roles;
-	}
+    public void setRemoteAddress(String remoteAddress) {
+        this.remoteAddress = remoteAddress;
+    }
 
-	public void setRoles( List<User.UserType> roles )
-	{
-		this.roles = roles;
-	}
+    public List<User.UserType> getRoles() {
+        return roles;
+    }
 
-	public RSearch getrSearch() {
-		return rSearch;
-	}
+    public void setRoles(List<User.UserType> roles) {
+        this.roles = roles;
+    }
 
-	public void setrSearch(RSearch rSearch) {
-		this.rSearch = rSearch;
-	}
+    public RSearch getrSearch() {
+        return rSearch;
+    }
 
-	public static class Builder
-	{
-		private long adminId;
-		private long operatorId;
-		private long supplierId;
-		private long passengerId;
-		private long unknownUserId;
-		private boolean active = true;
+    public void setrSearch(RSearch rSearch) {
+        this.rSearch = rSearch;
+    }
 
-		public UserWrapper buildWrapper()
-		{
-			return new UserWrapper( adminId, operatorId, supplierId, passengerId, unknownUserId, active );
-		}
-	}
+    public static class Builder {
+        private long adminId;
+        private long operatorId;
+        private long supplierId;
+        private long passengerId;
+        private long unknownUserId;
+        private boolean active = true;
+
+        public UserWrapper buildWrapper() {
+            return new UserWrapper(adminId, operatorId, supplierId, passengerId, unknownUserId, active);
+        }
+    }
 }
