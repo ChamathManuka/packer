@@ -117,7 +117,10 @@ Packer was built to apply and showcase:
 Backend Engineer | Java | Cloud(AWS(SSA) & HashiCorp certified) | System Design
 
 ## License
-This project is licensed under the **MIT License**.  
-You are free to use, copy, modify, and distribute the code, with proper credit.
 
-For full license text, see [LICENSE](LICENSE).
+This project is licensed under **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.
+
+- You are free to **view, learn from, and adapt** this project for educational or research purposes.
+- **Commercial use is prohibited** without explicit permission from the author.
+
+For full license text, see [LICENSE](LICENSE). 
