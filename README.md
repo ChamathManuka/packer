@@ -115,3 +115,9 @@ Packer was built to apply and showcase:
 ## Author
 **Chamath Gamage**  
 Backend Engineer | Java | Cloud(AWS(SSA) & HashiCorp certified) | System Design
+
+## License
+This project is licensed under the **MIT License**.  
+You are free to use, copy, modify, and distribute the code, with proper credit.
+
+For full license text, see [LICENSE](LICENSE).
